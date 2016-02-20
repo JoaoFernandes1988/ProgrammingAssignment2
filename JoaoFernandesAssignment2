@@ -1,4 +1,4 @@
-Enter makeCacheMatrix<-function(x=matrix()){
+makeCacheMatrix<-function(x=matrix()){
 + inv<-NULL
 + set<-function(y){
 + x<<-y
@@ -33,4 +33,4 @@ cacheSolve<-function(x,...){
 
 cacheSolve(momentoftruth)
 
-momentoftruth$Ginverse() file contents here
+momentoftruth$Ginverse()
