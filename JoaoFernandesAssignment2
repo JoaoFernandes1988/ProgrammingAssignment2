@@ -1,18 +1,24 @@
 makeCacheMatrix<-function(x=matrix()){
-+ inv<-NULL
-+ set<-function(y){
-+ x<<-y
-+ inv<<-NULL
+## Initialize the inverse property
+inv<-NULL     
+##Method to set the matrix
+set<-function(y){
+  + x<<-y
+  + inv<<-NULL
 + }
-+ get<-function()x
-+ Sinverse<-function(inverse)inv<<-inverse
+## Method the get the matrix
++ get<-function()x  
+
+## Method to set the inverse of the matrix
+Sinverse<-function(inverse)inv<<-inverse
 + Ginverse<-function()inv
-+ list(set=set,
-+ get=get,
-+ Sinverse=Sinverse,
-+ Ginverse=Ginverse)
++   list(set=set,
++     get=get,
++     Sinverse=Sinverse,
++     Ginverse=Ginverse)
 + }
 
+##test the function with a random matrix
 Joaomatrix<-matrix(1:4,2,2)
 print(Joaomatrix)
 momentoftruth<-makeCacheMatrix(Joaomatrix)
@@ -20,15 +26,19 @@ momentoftruth$Ginverse()
 
 
 cacheSolve<-function(x,...){
-+ inv<-x$Ginverse()
-+ if(!is.null(inv)){
-+ message("getting cached data")
-+ return(inv)
+## Return a matrix that is the inverse of 'x'
+  + inv<-x$Ginverse()
+## Return the inverse if its already set
+  + if(!is.null(inv)){
+  + message("getting cached data")
+  + return(inv)
 + }
 + mt<-x$get()
-+ inv<-solve(mt,...)
-+ x$Sinverse(inv)
-+ inv
+## Calculate the inverse using matrix multiplication
+  + inv<-solve(mt,...)
+## Set the inverse to the object
+  + x$Sinverse(inv)
+  + inv
 + }
 
 cacheSolve(momentoftruth)
